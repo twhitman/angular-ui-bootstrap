@@ -53,10 +53,10 @@ angular.module('ui.bootstrap.pagination', [])
     $scope.totalPages = self.calculateTotalPages();
   });
 
-  $scope.$watch('totalPages', function(value) {
+  $scope.$watch('totalPages', function(value, oldvalue ) {
     setNumPages($scope.$parent, value); // Readonly variable
 
-    if ( $scope.page > value ) {
+    if ( $scope.page > value && value != oldvalue ) {
       $scope.selectPage(value);
     } else {
       ngModelCtrl.$render();
